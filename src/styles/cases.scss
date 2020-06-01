@@ -1,0 +1,17 @@
+@import './constants.scss';
+@import './mixins.scss';
+
+.cases {
+    width: 270px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: $dark;
+    z-index: 2;
+    @include mobile {
+        display: none;
+    }
+    padding: 24px;
+    color: #fff;
+}

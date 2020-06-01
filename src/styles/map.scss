@@ -1,0 +1,73 @@
+@import './constants.scss';
+@import './mixins.scss';
+
+.map {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding-top: 200px;
+    position: relative;
+}
+
+.global-stats {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    padding: 20px 30px;
+    width: 100vw;
+    z-index: 1;
+    height: 200px;
+    color: #fff;
+    background: linear-gradient(180deg, $darkLighter 90%, transparent);
+    @include mobile {
+        left: 0;
+        background: linear-gradient(180deg, $darkLighter 90%, transparent);
+    }
+    h1 {
+        font-weight: normal;
+        margin-bottom: 20px;
+    }
+
+    .stats-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        
+        .stats {
+            display: flex;
+            align-items: center;
+            margin-right: 70px;
+
+            @include mobile {
+                margin-right: 0;
+                flex: 1;
+            }
+
+            .box {
+                width: 50px;
+                height: 50px;
+                border-radius: 10px;
+                display: flex;
+                margin-right: 10px;
+                align-items: center;
+                justify-content: center;
+
+                $colors: (
+                    red: $red,
+                    yellow: $yellow,
+                    cyan: $cyan,
+                    gray: $gray
+                );
+                @each $color, $colorVal in $colors {
+                    &.#{$color} {
+                        background: $colorVal;
+                        box-shadow:0 2px 20px transparentize($color: $colorVal, $amount: 0.5);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+@import './constants.scss';
+
+@mixin tablet {
+    @media only screen and #{$tablet} {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media only screen and #{$mobile} {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media only screen and #{$desktop} {
+        @content;
+    }
+}
