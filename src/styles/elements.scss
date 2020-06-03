@@ -1,5 +1,5 @@
 .full-loader {
-    position: fixed;
+    position: absolute;
     top:0;
     display: flex;
     justify-content: center;
@@ -59,9 +59,10 @@
         justify-content: center;
         color: $gray;
         transition: all 0.3s ease-in-out;
-        transition: color 0.3s ease-in-out;
+        
         &:hover {
             cursor: pointer;
+            color: #fff;
         }
 
         &.active {
@@ -70,6 +71,13 @@
             color: #fff;
             border-bottom: 3px solid $yellow;
         }
+    }
+
+    @include mobile {
+        margin: 0 20px;
+    }
+    @include tablet {
+        margin: 0 20px;
     }
 }
 
@@ -120,6 +128,16 @@
 }
 
 .graph-container {
-    height: 300px;
     width: 100%;
+}
+
+.graph-error {
+    display: flex;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    p {
+        margin-top: 10px;
+    }
 }

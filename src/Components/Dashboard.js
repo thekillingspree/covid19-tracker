@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactMapGL, { Popup, FlyToInterpolator, Source, Layer } from 'react-map-gl'
 import '../styles/map.scss'
 import FullLoader from './FullLoader'
-import CircularMarkers from './CircularMarkers'
-import { useRecoilValueLoadable, useRecoilValue } from 'recoil'
+import { useRecoilValueLoadable, useRecoilState } from 'recoil'
 import { globalStats, currentCountry } from '../state'
 import GlobalStats from './GlobalStats'
 
@@ -16,7 +15,7 @@ const Dashboard = () => {
        zoom: 0
     })
 
-    const country = useRecoilValue(currentCountry)
+    const [country, setCountry] = useRecoilState(currentCountry)
     const [popup, setPopup] = useState(null)
     const dataLoadable = useRecoilValueLoadable(globalStats)
 
@@ -24,18 +23,16 @@ const Dashboard = () => {
         if (country) {
             setPopup(country)
             setViewport({
-                zoom: 3, 
+                zoom: 3.5, 
                 latitude: country.countryInfo.lat,
                 longitude: country.countryInfo.long,
-                transitionInterpolator: new FlyToInterpolator({speed: 1}),
+                transitionInterpolator: new FlyToInterpolator({speed: 0.7, curve: 1.6}),
                 transitionDuration: 'auto'
             })
         }
     }, [country])
 
     const CountryPopup = props => {
-
-        console.log(props)
         return popup && (
             <Popup 
                 tipsSize={5}
@@ -71,9 +68,9 @@ const Dashboard = () => {
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
                 onClick={(obj) => {
                     if (obj.features.length !== 0) {
-                        console.log(obj.features[0].properties)
                         let c = obj.features[0].properties
                         setPopup({...c, countryInfo: JSON.parse(c.countryInfo)})
+                        setCountry({...c, countryInfo: JSON.parse(c.countryInfo)})
                     }
                 }}
                 onViewportChange={newViewPort => setViewport(newViewPort)}

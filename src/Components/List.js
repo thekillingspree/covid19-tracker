@@ -1,7 +1,8 @@
 import React, {useRef, useEffect} from 'react'
-import { useRecoilValue, useRecoilValueLoadable, useRecoilState } from 'recoil'
+import { useRecoilValueLoadable, useRecoilState } from 'recoil'
 import { filteredCountryData, currentCountry } from '../state'
-
+import MoonLoader from 'react-spinners/MoonLoader'
+import { accetYellow } from '../constants'
 
 const ListItem = ({country, active, onClick}) => {
     const ref = useRef(null)
@@ -27,26 +28,48 @@ const ListItem = ({country, active, onClick}) => {
 
 const List = () => {
 
-    const {state, contents} = useRecoilValueLoadable(filteredCountryData)
+    const data = useRecoilValueLoadable(filteredCountryData)
     const [_country, setCountry] = useRecoilState(currentCountry)
-    return (
-        <div className="list-container">
-            {state === 'loading' && <p>Loading...</p>}
-            {state === 'hasValue' && contents.map(country => {
 
-                return (
-                    <ListItem  
-                    active={_country && _country.country === country.country}
-                    onClick={() => {
-                        if (_country && _country.country === country.country)
-                            setCountry(null)
-                        else
-                            setCountry(country)
-                    }}
-                    country={country}/>
-            )})}
-        </div>
-    )
+    switch(data.state) {
+        case 'loading':
+            return (
+                <div className="list-container">
+                 <div 
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <MoonLoader 
+                        size={30}
+                        color={accetYellow}
+                        />
+                    </div>
+                </div>
+            )
+
+        case 'hasValue':
+            return (
+                <div className="list-container">
+                    {data.contents.map((country, i) => {
+
+                        return (
+                            <ListItem  
+                            key={i}
+                            active={_country && _country.country === country.country}
+                            onClick={() => {
+                                if (_country && _country.country === country.country)
+                                    setCountry(null)
+                                else
+                                    setCountry(country)
+                            }}
+                            country={country}/>
+                    )})}
+                </div>
+            )
+    }
 }
 
 export default List

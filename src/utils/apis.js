@@ -32,3 +32,5 @@ export const getHistoricalCountry = async country => {
         console.log(error)
     }
 }
+
+//TODO: Get News regarding CoVID-19

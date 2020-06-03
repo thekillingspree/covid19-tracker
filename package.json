@@ -17,7 +17,7 @@
     "react-scripts": "3.4.1",
     "react-spinners": "^0.8.3",
     "recharts": "^1.8.5",
-    "recoil": "^0.0.7"
+    "recoil": "^0.0.8"
   },
   "scripts": {
     "start": "react-scripts start",

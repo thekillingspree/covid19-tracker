@@ -8,24 +8,24 @@
     justify-content: center;
     align-items: center;
     flex: 1;
-    padding-top: 200px;
-    position: relative;
+    // padding-top: 200px;
+    position: fixed;
 }
 
 .global-stats {
     position: absolute;
     top: 0;
-    left: 60px;
+    left: 0px;
     padding: 20px 30px;
     width: 100vw;
     z-index: 1;
     height: 200px;
     color: #fff;
-    background: linear-gradient(180deg, $darkLighter 90%, transparent);
-    @include mobile {
-        left: 0;
-        background: linear-gradient(180deg, $darkLighter 90%, transparent);
-    }
+    // background: linear-gradient(180deg, $darkLighter 90%, transparent);
+    // @include mobile {
+    //     left: 0;
+    //     background: linear-gradient(180deg, $darkLighter 90%, transparent);
+    // }
     h1 {
         font-weight: normal;
         margin-bottom: 20px;
@@ -42,8 +42,14 @@
             margin-right: 70px;
 
             @include mobile {
-                margin-right: 0;
+                margin-right: 20px;
+                margin-bottom: 10px;
                 flex: 1;
+
+                h2 {
+                    font-size: 1.4rem;
+                }
+
             }
 
             .box {
@@ -54,6 +60,17 @@
                 margin-right: 10px;
                 align-items: center;
                 justify-content: center;
+
+                @include mobile {
+                    width: 35px;
+                    height: 35px;
+                    font-size: 1rem;
+
+                    svg {
+                        width: 1rem;
+                        height: 1rem;
+                    }
+                }
 
                 $colors: (
                     red: $red,

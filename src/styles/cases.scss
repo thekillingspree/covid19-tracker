@@ -9,9 +9,30 @@
     right: 0;
     background: $dark;
     z-index: 2;
-    @include mobile {
-        display: none;
-    }
     padding: 24px;
     color: #fff;
+    @include mobile {
+        width: 100vw;
+        height: auto;
+        padding: 0;
+        position: absolute;
+        top: 80vh;
+
+        h2 {
+            margin: 20px 20px;
+        }
+    }
+
+    @include tablet {
+        width: 100vw;
+        height: auto;
+        padding: 0;
+        position: absolute;
+        top: 80vh;
+
+        h2 {
+            margin: 20px 20px;
+        }
+    }
+
 }

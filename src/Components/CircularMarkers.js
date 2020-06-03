@@ -4,7 +4,6 @@ import { Marker } from 'react-map-gl'
 const CircularMarker = memo(props => {
 
         const {data, onClick} = props;
-        console.log('re rendered')
         return data.map(country => {
             const size = (500 * Math.sqrt(country.cases/10000000)) / 3 + 4
             return (

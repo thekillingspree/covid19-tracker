@@ -45,9 +45,9 @@ export const graphData = selector({
         let historical;
         
         if (!country)
-            historical = get(globalStats).historical
+            historical = await get(globalStats).historical
         else
-            historical = get(getHistoricalByCountry)
+            historical = await get(getHistoricalByCountry)
         
         const categoryHistorical = historical[MAPPING[category]]
         
@@ -67,7 +67,6 @@ export const globalStats = selector({
         const countryWiseStats = await getCountryWiseData()
         const historical = await getHistorical()
 
-        console.log('Got data')
         const globalStats = countryWiseStats.reduce((prev, curr) => ({
             cases: prev.cases + curr.cases,
             deaths: prev.deaths + curr.deaths,

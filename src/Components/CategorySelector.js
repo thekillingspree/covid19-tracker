@@ -1,4 +1,6 @@
 import React from 'react'
+import { currentCategory } from '../state';
+import { useRecoilState } from 'recoil';
 
 const Category = ({category, onClick, active}) => {
     return (
@@ -12,15 +14,15 @@ const Category = ({category, onClick, active}) => {
 
 const CategorySelector = props => {
 
-    const {active, onClick} = props;
-
+    const [category, setCategory] = useRecoilState(currentCategory)
     return (
         <div className="categories">
             {['Infected', 'Recovered', 'Deaths'].map((c, i)=> (
                 <Category 
+                    key={i}
                     category={c}
-                    onClick={() => onClick(c)}
-                    active={c === active}
+                    onClick={() => setCategory(c)}
+                    active={c === category}
                 />
             ))}
         </div>
