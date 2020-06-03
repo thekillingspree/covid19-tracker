@@ -59,7 +59,7 @@
         justify-content: center;
         color: $gray;
         transition: all 0.3s ease-in-out;
-        
+        user-select: none;
         &:hover {
             cursor: pointer;
             color: #fff;

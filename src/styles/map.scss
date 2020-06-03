@@ -17,7 +17,9 @@
     top: 0;
     left: 0px;
     padding: 20px 30px;
+    user-select: none;
     width: 100vw;
+    pointer-events: none;
     z-index: 1;
     height: 200px;
     color: #fff;
